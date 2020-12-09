@@ -78,7 +78,7 @@ public class Corredor implements Serializable, Comparable<Corredor>{
         return this.Fecha_Nacimiento.compareTo(c.Fecha_Nacimiento);
     }
     
-    /* Metodo toString */
+    /* Metodo toString para realizar pruebas*/
 
     @Override
     public String toString() {
