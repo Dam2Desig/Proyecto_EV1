@@ -5,6 +5,6 @@ package Logica;
 
 public class Validar {
 
-    
+    /* Hola */
     
 }
