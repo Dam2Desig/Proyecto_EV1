@@ -1,7 +1,7 @@
 
 package GUI.SubPantallasCorredores;
 
-import Logica.Lista_Corredores;
+import Logica.*;
 import DTO.Corredor;
 import GUI.SubPantallasCorredores.Tablemodels.Tablemodels;
 import java.util.*;
@@ -304,18 +304,18 @@ public class Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTable_DatosMouseClicked
     
     /* Este metodo recoje los datos de la tabla */
-    
+
     private Corredor Recojer_Datos(){
-        /* Cojemos los datos introducidos */
+        // Cojemos los datos introducidos 
         String Nombre = jTextField_Nombre.getText();
         String DNI = jTextField_DNI.getText();
         Date Fecha_Nacimiento = (Date) jSpinner_Fecha_Nacimiento.getValue();
         String Direcion = jTextField_Direcion.getText();
         int N_Contacto = Integer.valueOf(jTextField_N_Contacto.getText());
-        /* Creamos al corredor */
+        // Creamos al corredor 
         return new Corredor(Nombre, DNI, Fecha_Nacimiento, Direcion, N_Contacto);
     }
-    
+
     /* Este metodo restaurarra los campos a sus balores por defecto */
     
     private void Actualizar_Campos (){
