@@ -25,17 +25,22 @@ public class Validar {
     }
     
     /* Este metodo valida el Fecha_Nacimiento del particiante */
-    
+    /*
     public boolean V_Fecha_Nacimiento(Date Fecha_Nacimiento){
-        int año_max=100;
-        int año_min=18;
-      System.out.println("*");
-        if((Fecha_Nacimiento.getYear()>año_min) && (Fecha_Nacimiento.getYear()<año_max)) {
-            System.out.println("hello world");
-            return true;
-        }
-        return false;
+        
+      // falta validar la fecha de nacimiento
+        
+        return true;
     }
+    
+    
+    public boolean V_Fecha_Nacimiento(Date fn){
+       int i = (int) fn.getTime();
+        System.out.println("prueba de fecha a ver q sale: "+i);
+        
+        return true;
+    }
+    */
     
     /* Este metodo valida el Direcion del particiante */
         

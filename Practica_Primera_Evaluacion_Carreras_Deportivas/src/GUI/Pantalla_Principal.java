@@ -1,7 +1,8 @@
 
 package GUI;
 
-import GUI.SubPantallasCorredores.Corredores;
+import GUI.SubPantallaCarreras.Carreras;
+import GUI.SubPantallaCorredores.Corredores;
 import GUI.IMG.Imajen_Fondo;
 import Logica.*;
 
@@ -64,6 +65,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
 
         jButtonGestion_Carreras.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonGestion_Carreras.setText("Gestion Carreras");
+        jButtonGestion_Carreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGestion_CarrerasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,6 +159,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         // Cerramos el programa
         System.exit(0);
     }//GEN-LAST:event_jButton_SalirActionPerformed
+
+    /* Este metodo nos abrira la pantalla de Gestion de Carreras */
+    
+    private void jButtonGestion_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestion_CarrerasActionPerformed
+        Carreras carreras = new Carreras(this, true);
+        carreras.setVisible(true);
+    }//GEN-LAST:event_jButtonGestion_CarrerasActionPerformed
     
     /* @param args the command line arguments */
     public static void main(String args[]) {

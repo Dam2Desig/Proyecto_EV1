@@ -54,7 +54,7 @@ public class Persistencia_Datos_Carreras {
     public void Guardar_Carreras(){
         try{
             Escribir_Objetos = new ObjectOutputStream(new FileOutputStream(Ruta));
-            Iterator <Carrera> Lista = Lista_Carreras.getLista_Carrera().iterator();
+            Iterator <Carrera> Lista = lista_Carreras.getLista_Carrera().iterator();
             Carrera c;
             while(Lista.hasNext()){
                 c = Lista.next();

@@ -1,9 +1,9 @@
 
-package GUI.SubPantallasCorredores;
+package GUI.SubPantallaCorredores;
 
 import Logica.*;
 import DTO.Corredor;
-import GUI.SubPantallasCorredores.Tablemodels.Tablemodels;
+import GUI.SubPantallaCorredores.Tablemodels.Tablemodels;
 import java.util.*;
 import java.text.*;
 import javax.swing.JOptionPane;
@@ -12,6 +12,8 @@ public class Corredores extends javax.swing.JDialog {
     
     /* Creamos un binculo a la lista de corredores */
     private Lista_Corredores lista_Corredores = new Lista_Corredores();
+    /* Creamos un binculo para validar los datos */
+    private Validar validar = new Validar();
     /* Este atributo se usa para recojer los datos de los corredores a borrar o a modificar */
     private Corredor MouseClicked;
 
@@ -230,11 +232,15 @@ public class Corredores extends javax.swing.JDialog {
     private void jButton_AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AñadirActionPerformed
         /* Cojemos los datos llamandoa al metodo Recojer_Datos */
         Corredor c = Recojer_Datos();
-        /* Añadimos al corredor a la lista */        
-        lista_Corredores.Añadir_Participante(c);
-        /* Actualizamos la tabla y los campos de texto */
-        ActualizarTabla();
-        Actualizar_Campos();
+        if(c != null){
+            /* Añadimos al corredor a la lista */        
+            lista_Corredores.Añadir_Participante(c);
+            /* Actualizamos la tabla y los campos de texto */
+            ActualizarTabla();
+            Actualizar_Campos();
+        } else{
+            JOptionPane.showMessageDialog(this, "Los datos introducidos no son validos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton_AñadirActionPerformed
     
     /* Borramos al corredor selecionado por el evento de MouseClicked de la tabla */
@@ -312,8 +318,12 @@ public class Corredores extends javax.swing.JDialog {
         Date Fecha_Nacimiento = (Date) jSpinner_Fecha_Nacimiento.getValue();
         String Direcion = jTextField_Direcion.getText();
         int N_Contacto = Integer.valueOf(jTextField_N_Contacto.getText());
-        // Creamos al corredor 
-        return new Corredor(Nombre, DNI, Fecha_Nacimiento, Direcion, N_Contacto);
+        // valiidamos los datos que introduce el usuario
+        if(validar.V_Nombre(Nombre) && validar.V_DNI(DNI) && validar.V_Direcion(Direcion) && validar.V_N_Contacto(N_Contacto)){
+            return new Corredor(Nombre, DNI, Fecha_Nacimiento, Direcion, N_Contacto);
+        } else{
+            return null;
+        }
     }
 
     /* Este metodo restaurarra los campos a sus balores por defecto */

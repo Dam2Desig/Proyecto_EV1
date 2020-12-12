@@ -48,8 +48,12 @@ public class Lista_Carreras {
     
     /* Metodo get del objeto */
 
-    public static List<Carrera> getLista_Carrera() {
+    public List<Carrera> getLista_Carrera() {
         return Lista_Carrera;
+    }
+
+    public List<Carrera> getLista_Participantes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

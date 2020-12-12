@@ -1,5 +1,5 @@
 
-package GUI.SubPantallasCorredores.Tablemodels;
+package GUI.SubPantallaCorredores.Tablemodels;
 
 import DTO.Corredor;
 import java.util.*;
