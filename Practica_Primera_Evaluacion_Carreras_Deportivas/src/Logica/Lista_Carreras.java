@@ -11,13 +11,13 @@ public class Lista_Carreras {
 
     /* Este metodo añade una carrera a Lista carreras */
     
-    public void Añadir_Participante(Carrera c){
+    public void Añadir_Carrera(Carrera c){
         Lista_Carrera.add(c);
     }
     
     /* Este metodo borra una carrera de Lista carreras */
     
-    public void Borrar_Participante(Carrera c){
+    public void Borrar_Carrera(Carrera c){
         Iterator <Carrera> Lista = Lista_Carrera.iterator();
         boolean Salir = false;
         while(Lista.hasNext() && Salir != true){
@@ -28,9 +28,9 @@ public class Lista_Carreras {
         }
     }
     
-        /* Metodo de actualizar datos de los corredores */
+    /* Metodo de actualizar datos de los corredores */
     
-    public void Actualizar_Participantes(Carrera c_Antiguo, Carrera c_Nuevo){
+    public void Actualizar_Carrera(Carrera c_Antiguo, Carrera c_Nuevo){
         Iterator <Carrera> Lista = Lista_Carrera.iterator();
         boolean Salir = false;
         Carrera c;
@@ -46,14 +46,38 @@ public class Lista_Carreras {
         }
     }
     
-    /* Metodo get del objeto */
-
-    public List<Carrera> getLista_Carrera() {
-        return Lista_Carrera;
-    }
-
-    public List<Carrera> getLista_Participantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /* Este metodo devuelve las carreras que todavia no se an realizado */
+    
+    public List<Carrera> Lista_sin_correr (){
+        List <Carrera> L = new ArrayList<>();  
+        Carrera c;
+        Iterator <Carrera> Lista = Lista_Carrera.iterator();
+        while(Lista.hasNext()){
+            if((c = Lista.next()).getRealizada() == false){
+                L.add(c);
+            }
+        }
+        return L;
     }
     
+    /* Este metodo devuelve las carreras que todavia no se an realizado */
+    
+    public List<Carrera> Lista_Carreras_Realizadas (){
+        List <Carrera> L = new ArrayList<>();  
+        Carrera c;
+        Iterator <Carrera> Lista = Lista_Carrera.iterator();
+        while(Lista.hasNext()){
+            if((c = Lista.next()).getRealizada()){
+                L.add(c);
+            }
+        }
+        return L;
+    }
+
+    /* Metodo get del objeto para persistencia de datos */
+    
+    public static List<Carrera> getLista_Carrera() {
+        return Lista_Carrera;
+    }
+        
 }

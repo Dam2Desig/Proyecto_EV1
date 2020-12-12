@@ -1,0 +1,7 @@
+
+    - Acordarse de camviar el boolean en el objeto carreras para que se diferencia entre carrera terminada y
+    Carrera sin empezar
+
+    - Validar Fecha de nacimiento de los corredores
+
+    - Validar los campos de carreras

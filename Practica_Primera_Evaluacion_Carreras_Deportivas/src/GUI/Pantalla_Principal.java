@@ -1,7 +1,7 @@
 
 package GUI;
 
-import GUI.SubPantallaCarreras.Carreras;
+import GUI.SubPantallaCarreras.Carreras_sin_Realizar;
 import GUI.SubPantallaCorredores.Corredores;
 import GUI.IMG.Imajen_Fondo;
 import Logica.*;
@@ -39,7 +39,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jLabel_Nombre_App = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonGestion_Corredores = new javax.swing.JButton();
-        jButtonGestion_Carreras = new javax.swing.JButton();
+        jButtonGestion_Carreras_Sin_Realizar = new javax.swing.JButton();
+        jButton_Carreras_Realizadas = new javax.swing.JButton();
         jButton_Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -63,13 +64,16 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             }
         });
 
-        jButtonGestion_Carreras.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButtonGestion_Carreras.setText("Gestion Carreras");
-        jButtonGestion_Carreras.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestion_Carreras_Sin_Realizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButtonGestion_Carreras_Sin_Realizar.setText("Gestion Carreras sin Realizar");
+        jButtonGestion_Carreras_Sin_Realizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGestion_CarrerasActionPerformed(evt);
+                jButtonGestion_Carreras_Sin_RealizarActionPerformed(evt);
             }
         });
+
+        jButton_Carreras_Realizadas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton_Carreras_Realizadas.setText("Gestion Carreras Realizadas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,8 +82,9 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonGestion_Corredores, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jButtonGestion_Carreras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonGestion_Corredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonGestion_Carreras_Sin_Realizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Carreras_Realizadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,8 +93,10 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButtonGestion_Corredores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGestion_Carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addComponent(jButtonGestion_Carreras_Sin_Realizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_Carreras_Realizadas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jButton_Salir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -109,7 +116,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                         .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel_Nombre_App, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
                 .addContainerGap())
@@ -119,11 +126,12 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_Nombre_App, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -162,10 +170,10 @@ public class Pantalla_Principal extends javax.swing.JFrame {
 
     /* Este metodo nos abrira la pantalla de Gestion de Carreras */
     
-    private void jButtonGestion_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestion_CarrerasActionPerformed
-        Carreras carreras = new Carreras(this, true);
+    private void jButtonGestion_Carreras_Sin_RealizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestion_Carreras_Sin_RealizarActionPerformed
+        Carreras_sin_Realizar carreras = new Carreras_sin_Realizar(this, true);
         carreras.setVisible(true);
-    }//GEN-LAST:event_jButtonGestion_CarrerasActionPerformed
+    }//GEN-LAST:event_jButtonGestion_Carreras_Sin_RealizarActionPerformed
     
     /* @param args the command line arguments */
     public static void main(String args[]) {
@@ -201,8 +209,9 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonGestion_Carreras;
+    private javax.swing.JButton jButtonGestion_Carreras_Sin_Realizar;
     private javax.swing.JButton jButtonGestion_Corredores;
+    private javax.swing.JButton jButton_Carreras_Realizadas;
     private javax.swing.JButton jButton_Salir;
     private javax.swing.JLabel jLabel_Nombre_App;
     private javax.swing.JPanel jPanel1;

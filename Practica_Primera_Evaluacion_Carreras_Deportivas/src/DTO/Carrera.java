@@ -15,6 +15,8 @@ public class Carrera implements Serializable{
     private Date Fecha;
     private String Direcion;
     private int N_Participantes;
+    // Este atributo sirve para saver si la carrera ya se realizo o no
+    private boolean Realizada;
     // Este atrivuto guarda un corredor y su dorsal asociado
     private List <Lista_Corredores> Lista_Corredores;
     
@@ -25,7 +27,8 @@ public class Carrera implements Serializable{
         this.Fecha = Fecha;
         this.Direcion = Direcion;
         this.N_Participantes = N_Participantes;
-        Lista_Corredores = new ArrayList<Lista_Corredores>();
+        Realizada = false;
+        Lista_Corredores = new ArrayList<Lista_Corredores>(); 
     }
 
     /* Metodos set de objeto */
@@ -40,6 +43,10 @@ public class Carrera implements Serializable{
 
     public void setDirecion(String Direcion) {
         this.Direcion = Direcion;
+    }
+
+    public void setRealizada(boolean Realizada) {
+        this.Realizada = Realizada;
     }
 
     public void setN_Participantes(int N_Participantes) {
@@ -62,6 +69,10 @@ public class Carrera implements Serializable{
 
     public int getN_Participantes() {
         return N_Participantes;
+    }
+
+    public boolean getRealizada() {
+        return Realizada;
     }
 
     public List<Lista_Corredores> getLista_Corredores() {

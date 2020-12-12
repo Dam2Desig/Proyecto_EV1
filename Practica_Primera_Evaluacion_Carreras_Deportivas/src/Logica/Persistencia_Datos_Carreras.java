@@ -27,7 +27,7 @@ public class Persistencia_Datos_Carreras {
             try{
                 Leer_Objetos = new ObjectInputStream(new FileInputStream(Ruta));
                 while (true) {
-                    lista_Carreras.Añadir_Participante((Carrera) Leer_Objetos.readObject());
+                    lista_Carreras.Añadir_Carrera((Carrera) Leer_Objetos.readObject());
                 }
             } catch (EOFException e) {
                 

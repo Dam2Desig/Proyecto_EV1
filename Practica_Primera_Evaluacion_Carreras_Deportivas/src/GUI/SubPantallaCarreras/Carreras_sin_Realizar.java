@@ -4,17 +4,23 @@ package GUI.SubPantallaCarreras;
 import Logica.*;
 import DTO.*;
 import GUI.SubPantallaCarreras.Tablemodels.Tablemodels;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
-public class Carreras extends javax.swing.JDialog {
+public class Carreras_sin_Realizar extends javax.swing.JDialog {
 
     /* Creamos un binculo a la lista de carreras */
     private Lista_Carreras lista_carreras = new Lista_Carreras();
+    /* Este atributo se usa para recojer los datos de los corredores a borrar o a modificar */
+    private Carrera MouseClicked;
     
     /* Creates new form Carreras */
-    public Carreras(java.awt.Frame parent, boolean modal) {
+    public Carreras_sin_Realizar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ActualizarTabla();
+        Actualizar_Tabla();
     }
 
     /**
@@ -36,10 +42,10 @@ public class Carreras extends javax.swing.JDialog {
         jSpinner1 = new javax.swing.JSpinner();
         jTextFieldN_Participantes = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonAñadir = new javax.swing.JButton();
+        jButtonGestion = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
+        jButtonBorrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCarreras = new javax.swing.JTable();
 
@@ -104,31 +110,31 @@ public class Carreras extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("Añadir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAñadir.setText("Añadir");
+        jButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAñadirActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Gestionar participantes");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestion.setText("Gestionar participantes");
+        jButtonGestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonGestionActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Modificar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonModificarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Borrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBorrar.setText("Borrar");
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonBorrarActionPerformed(evt);
             }
         });
 
@@ -139,23 +145,23 @@ public class Carreras extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -170,6 +176,11 @@ public class Carreras extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCarrerasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableCarreras);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,31 +212,100 @@ public class Carreras extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
+        Carrera c = Recoger_Datos();
+        lista_carreras.Añadir_Carrera(c);
+        Actualizar_Tabla();
+        Actualizar_Campos();
+    }//GEN-LAST:event_jButtonAñadirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonGestionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        // Confirmamos que quiere modificar al usuario 
+        String Yes_No = "Confirma para modificar la carrera " + MouseClicked.getNombre();
+        int resultado = JOptionPane.showConfirmDialog(this, Yes_No, "Confirmar", JOptionPane.YES_NO_OPTION);
+        if(resultado == JOptionPane.YES_OPTION){
+            // Cojemos los datos llamandoa al metodo Recojer_Datos y se lo pasamos al metodo de modificar
+            Carrera c_Nuevo = Recoger_Datos();
+            lista_carreras.Actualizar_Carrera(MouseClicked, c_Nuevo);
+            // Actualizamos la tabla
+            Actualizar_Tabla();
+            // Informamos de estado
+            JOptionPane.showMessageDialog(this, "La carrera fue actualizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(this, "La carrera no fue actualizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        // Actualizamos campos de texto y asignamos balor null al atributo MouseClicked
+        Actualizar_Campos();
+        MouseClicked = null;
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        /* Confirmamos que quiere borrar al usuario */
+        String Yes_No = "Confirma para borrar la carrera " + MouseClicked.getNombre();
+        int resultado = JOptionPane.showConfirmDialog(this, Yes_No, "Confirmar", JOptionPane.YES_NO_OPTION);
+        if(resultado == JOptionPane.YES_OPTION){
+            /* Llamamos al metodoa de borrar */
+            lista_carreras.Borrar_Carrera(MouseClicked);
+            /* Informamos de estado */
+            JOptionPane.showMessageDialog(this, "La carrera fue borrada con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            /* Actualizamos la tabla */
+            Actualizar_Tabla();
+        } else {
+            /* Informamos que no se borrara el corredor */
+            JOptionPane.showMessageDialog(this, "La carrera no fue borrada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        /* Actualizamos campos de texto y asignamos balor null al atributo MouseClicked */ 
+        Actualizar_Campos();
+        MouseClicked = null;
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
 
-    private void ActualizarTabla (){
-        jTableCarreras.setModel(new Tablemodels( lista_carreras.getLista_Carrera() ));
+    private void jTableCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarrerasMouseClicked
+        /* Cojemos la fila donde icimos click */
+        int seleccion = jTableCarreras.rowAtPoint(evt.getPoint());
+        /* Cojemos los valores de esa fila y los recolocamos en los JTextField o jSpinner*/
+        jTextFieldNombre.setText(String.valueOf(jTableCarreras.getValueAt(seleccion, 0)));
+        /* Convertimos la fecha optenida de String a date y se la pasamos al jSpinner */
+        try{
+            String Fecha = String.valueOf(jTableCarreras.getValueAt(seleccion, 1));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            jSpinner1.setValue(sdf.parse(Fecha));
+        } catch (ParseException e){
+            System.out.println(e.getMessage());
+        }
+        jTextFieldDirecion.setText(String.valueOf(jTableCarreras.getValueAt(seleccion, 2)));
+        jTextFieldN_Participantes.setText(String.valueOf(jTableCarreras.getValueAt(seleccion, 3)));
+         /* Cojemos los datos llamandoa al metodo Recojer_Datos y los guardamos en el atrivuto */
+        MouseClicked = Recoger_Datos();
+    }//GEN-LAST:event_jTableCarrerasMouseClicked
+
+    public Carrera Recoger_Datos (){
+        String nombre = jTextFieldNombre.getText();
+        Date fecha = (Date) jSpinner1.getValue();
+        String direcion = jTextFieldDirecion.getText();
+        int N_Participantes = Integer.parseInt(jTextFieldN_Participantes.getText());
+        return new Carrera(nombre, fecha, direcion, N_Participantes);
+    }
+    
+    public void Actualizar_Campos(){
+        jTextFieldNombre.setText("");
+        jSpinner1.setValue(new Date());
+        jTextFieldDirecion.setText("");
+        jTextFieldN_Participantes.setText("");
+    }
+    
+    private void Actualizar_Tabla (){
+        jTableCarreras.setModel(new Tablemodels(lista_carreras.Lista_sin_correr()));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAñadir;
+    private javax.swing.JButton jButtonBorrar;
+    private javax.swing.JButton jButtonGestion;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
