@@ -1,9 +1,6 @@
 
-    - Acordarse de camviar el boolean en el objeto carreras para que se diferencia entre carrera terminada y
-    Carrera sin empezar
+    - Validar datos de las carreras
 
-    - crear el evento del relos y la pantalla de gestion de la carrera para meter los tiempos
+    - Hacer el Relog con la pantalla de introducir los tiempos (jose te toco que yo fui por el papel)
 
-    - Validar Fecha de nacimiento de los corredores
-
-    - Validar los campos de carreras
+    - Probar que funcione todo sin petar 

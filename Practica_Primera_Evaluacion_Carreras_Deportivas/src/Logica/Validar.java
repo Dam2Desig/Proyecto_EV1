@@ -25,22 +25,14 @@ public class Validar {
     }
     
     /* Este metodo valida el Fecha_Nacimiento del particiante */
-    /*
-    public boolean V_Fecha_Nacimiento(Date Fecha_Nacimiento){
-        
-      // falta validar la fecha de nacimiento
-        
-        return true;
-    }
     
-    
-    public boolean V_Fecha_Nacimiento(Date fn){
-       int i = (int) fn.getTime();
-        System.out.println("prueba de fecha a ver q sale: "+i);
-        
-        return true;
+    public boolean V_Fecha_Nacimiento(Date fecha) {
+        if(!fecha.equals(new Date())){
+            return true;
+        } else{
+            return false;
+        }
     }
-    */
     
     /* Este metodo valida el Direcion del particiante */
         

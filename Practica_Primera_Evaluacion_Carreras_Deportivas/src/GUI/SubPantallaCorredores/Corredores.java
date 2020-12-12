@@ -333,7 +333,7 @@ public class Corredores extends javax.swing.JDialog {
         String Direcion = jTextField_Direcion.getText();
         int N_Contacto = Integer.valueOf(jTextField_N_Contacto.getText());
         // validamos los datos que introduce el usuario si alguno esta mal devuelve un null
-        if(validar.V_Nombre(Nombre) && validar.V_DNI(DNI) && validar.V_Direcion(Direcion) && validar.V_N_Contacto(N_Contacto)){
+        if(validar.V_Nombre(Nombre) && validar.V_DNI(DNI) && validar.V_Fecha_Nacimiento(Fecha_Nacimiento) && validar.V_Direcion(Direcion) && validar.V_N_Contacto(N_Contacto)){
             return new Corredor(Nombre, DNI, Fecha_Nacimiento, Direcion, N_Contacto);
         } else{
             return null;
