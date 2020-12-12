@@ -70,7 +70,16 @@ public class Corredores extends javax.swing.JDialog {
         jLabel_Telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel_Telefono.setText("Telefono:");
 
+        jTextField_Nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jTextField_DNI.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jSpinner_Fecha_Nacimiento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jSpinner_Fecha_Nacimiento.setModel(new javax.swing.SpinnerDateModel());
+
+        jTextField_Direcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jTextField_N_Contacto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,7 +173,7 @@ public class Corredores extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton_Borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_Añadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_Modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                    .addComponent(jButton_Modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -208,7 +217,7 @@ public class Corredores extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );

@@ -2,28 +2,26 @@
 package GUI.SubPantallaCarreras.Tablemodels;
 
 import DTO.Carrera;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class Tablemodels extends AbstractTableModel{
-    
+public class Tablemodels_Resultados extends AbstractTableModel{
+ 
     // Atrivutos del objeto
-    private List <Carrera> Lista_Carrera;
-    private String[] Nombre_Columnas = {"Nombre", "Fecha", "Direcion", "Numero de participantes"};
+    private Carrera C;
+    private String[] Nombre_Columnas = {"Nombre", "DNI", "Dolsar", "Posicion"};
 
     /* Contructor del objeto */
     
-    public Tablemodels(List<Carrera> Lista_Menus) {
-        this.Lista_Carrera = Lista_Menus;
+    public Tablemodels_Resultados(Carrera c) {
+        this.C = c;
     } 
 
     /* Este metodo nos debuelve el numero de filas */
     
     @Override
     public int getRowCount() {
-        return Lista_Carrera.size();
+        return C.getLista_Corredores().size();
     }
 
     /* Este metodo nos debuelve el numero de columnas */
@@ -39,16 +37,10 @@ public class Tablemodels extends AbstractTableModel{
     public Object getValueAt(int rewIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return Lista_Carrera.get(rewIndex).getNombre();
+                //return ;
             case 1:
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date FechaTem = Lista_Carrera.get(rewIndex).getFecha();
-                String Fecha = sdf.format(FechaTem);
-                return Fecha;
-            case 2:
-                return Lista_Carrera.get(rewIndex).getDirecion();
-            case 3:
-                return Lista_Carrera.get(rewIndex).getN_Participantes();
+                
+                //return ;
         }
         return null;
     }

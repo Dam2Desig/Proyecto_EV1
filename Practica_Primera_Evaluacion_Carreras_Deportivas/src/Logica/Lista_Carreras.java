@@ -73,6 +73,21 @@ public class Lista_Carreras {
         }
         return L;
     }
+    
+    /* Este metodo devuelve el objeto carreras que buscamos para ver los resultados */
+    
+    public Carrera Buscar_Resultados(String nombre, Date fecha){
+        Iterator <Carrera> Lista = Lista_Carrera.iterator();
+        boolean Salir = false;
+        Carrera c = null;
+        while(Lista.hasNext() && Salir != true){
+            c = Lista.next();
+            if(c.getNombre().equals(nombre) && c.getFecha().equals(fecha)){
+                Salir = true;
+            }
+        }
+        return c;
+    }
 
     /* Metodo get del objeto para persistencia de datos */
     

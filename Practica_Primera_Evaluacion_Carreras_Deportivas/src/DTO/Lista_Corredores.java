@@ -7,13 +7,15 @@ public class Lista_Corredores {
     
     // Atrivutos del objeto
     private Corredor corredor;
-    private int Dorsal;
+    private int dorsal;
+    private double tiempo;
 
     /* Contructor del objeto */
     
-    public Lista_Corredores(Corredor corredor, int Dorsal) {
+    public Lista_Corredores(Corredor corredor, int dorsal, double tiempo) {
         this.corredor = corredor;
-        this.Dorsal = Dorsal;
+        this.dorsal = dorsal;
+        this.tiempo = tiempo;
     }
 
     /* Metodos set de objeto */
@@ -22,8 +24,8 @@ public class Lista_Corredores {
         this.corredor = corredor;
     }
 
-    public void setDorsal(int Dorsal) {
-        this.Dorsal = Dorsal;
+    public void setDorsal(int dorsal) {
+        this.dorsal = dorsal;
     }
     
     /* Metodos get de objeto */
@@ -33,14 +35,14 @@ public class Lista_Corredores {
     }
 
     public int getDorsal() {
-        return Dorsal;
+        return dorsal;
     }
     
     /* Metodo toString */
 
     @Override
     public String toString() {
-        return "Lista_Corredores{" + "corredor=" + corredor + ", Dorsal=" + Dorsal + '}';
+        return "Lista_Corredores{" + "corredor=" + corredor + ", Dorsal=" + dorsal + '}';
     }
        
 }

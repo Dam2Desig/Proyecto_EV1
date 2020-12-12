@@ -2,6 +2,7 @@
 package GUI;
 
 import GUI.SubPantallaCarreras.Carreras_sin_Realizar;
+import GUI.SubPantallaCarreras.Carreras_Realizadas;
 import GUI.SubPantallaCorredores.Corredores;
 import GUI.IMG.Imajen_Fondo;
 import Logica.*;
@@ -74,6 +75,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
 
         jButton_Carreras_Realizadas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton_Carreras_Realizadas.setText("Gestion Carreras Realizadas");
+        jButton_Carreras_Realizadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Carreras_RealizadasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,12 +132,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_Nombre_App, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -174,6 +179,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         Carreras_sin_Realizar carreras = new Carreras_sin_Realizar(this, true);
         carreras.setVisible(true);
     }//GEN-LAST:event_jButtonGestion_Carreras_Sin_RealizarActionPerformed
+
+    private void jButton_Carreras_RealizadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Carreras_RealizadasActionPerformed
+        Carreras_Realizadas carrera_r = new Carreras_Realizadas(this, true);
+        carrera_r.setVisible(true);
+    }//GEN-LAST:event_jButton_Carreras_RealizadasActionPerformed
     
     /* @param args the command line arguments */
     public static void main(String args[]) {
