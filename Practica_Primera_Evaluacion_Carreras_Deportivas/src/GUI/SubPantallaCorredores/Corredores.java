@@ -283,11 +283,16 @@ public class Corredores extends javax.swing.JDialog {
         if(resultado == JOptionPane.YES_OPTION){
             /* Cojemos los datos llamandoa al metodo Recojer_Datos y se lo pasamos al metodo de modificar */
             Corredor c_Nuevo = Recojer_Datos();
-            lista_Corredores.Actualizar_Participantes(MouseClicked, c_Nuevo);
-            /* Actualizamos la tabla */
-            ActualizarTabla();
-            /* Informamos de estado */
-            JOptionPane.showMessageDialog(this, "El corredor fue actualizado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            if(c_Nuevo != null){
+                /* Actualizamos el campo */
+                lista_Corredores.Actualizar_Participantes(MouseClicked, c_Nuevo);
+                /* Actualizamos la tabla */
+                ActualizarTabla();
+                /* Informamos de estado */
+                JOptionPane.showMessageDialog(this, "El corredor fue actualizado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else{
+                JOptionPane.showMessageDialog(this, "Los datos introducidos no son validos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else{
             JOptionPane.showMessageDialog(this, "El corredor no fue actualizado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -327,7 +332,7 @@ public class Corredores extends javax.swing.JDialog {
         Date Fecha_Nacimiento = (Date) jSpinner_Fecha_Nacimiento.getValue();
         String Direcion = jTextField_Direcion.getText();
         int N_Contacto = Integer.valueOf(jTextField_N_Contacto.getText());
-        // valiidamos los datos que introduce el usuario
+        // validamos los datos que introduce el usuario si alguno esta mal devuelve un null
         if(validar.V_Nombre(Nombre) && validar.V_DNI(DNI) && validar.V_Direcion(Direcion) && validar.V_N_Contacto(N_Contacto)){
             return new Corredor(Nombre, DNI, Fecha_Nacimiento, Direcion, N_Contacto);
         } else{

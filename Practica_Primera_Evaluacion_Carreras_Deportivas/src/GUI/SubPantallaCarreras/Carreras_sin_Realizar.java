@@ -8,9 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+import GUI.Pantalla_Principal;
 
 public class Carreras_sin_Realizar extends javax.swing.JDialog {
 
+    /* Creamos un vinculo a la pantalla principal */
+    private Pantalla_Principal pantalla_principal;
     /* Creamos un binculo a la lista de carreras */
     private Lista_Carreras lista_carreras = new Lista_Carreras();
     /* Este atributo se usa para recojer los datos de los corredores a borrar o a modificar */
@@ -20,6 +24,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     public Carreras_sin_Realizar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        pantalla_principal = (Pantalla_Principal) parent;
         Actualizar_Tabla();
     }
 
@@ -231,7 +236,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     private void jButtonGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionActionPerformed
-        // TODO add your handling code here:
+        pantalla_principal.Añadir_Corredor();
     }//GEN-LAST:event_jButtonGestionActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed

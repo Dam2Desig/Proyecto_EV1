@@ -38,12 +38,12 @@ public class Persistencia_Datos_Carreras {
             } catch (ClassNotFoundException e) {
                 System.out.println("Error en la clase: " + e.getMessage());
             } finally {
-                if(Leer_Objetos != null){
-                    try{
+                try{
+                    if(Leer_Objetos != null){
                         Leer_Objetos.close();
-                    } catch (IOException e){
-                        System.out.println("Error: " + e.getMessage());
                     }
+                } catch (IOException e){
+                    System.out.println("Error: " + e.getMessage());
                 }
             }
         }

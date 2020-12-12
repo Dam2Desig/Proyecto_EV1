@@ -7,7 +7,7 @@ import java.util.*;
 public class Lista_Carreras {
     
     // Atrivutos del objeto
-    private static List <Carrera> Lista_Carrera = new ArrayList<>();
+    private List <Carrera> Lista_Carrera = new ArrayList<>();
 
     /* Este metodo añade una carrera a Lista carreras */
     
@@ -91,7 +91,7 @@ public class Lista_Carreras {
 
     /* Metodo get del objeto para persistencia de datos */
     
-    public static List<Carrera> getLista_Carrera() {
+    public List<Carrera> getLista_Carrera() {
         return Lista_Carrera;
     }
         

@@ -1,8 +1,7 @@
 
 package GUI;
 
-import GUI.SubPantallaCarreras.Carreras_sin_Realizar;
-import GUI.SubPantallaCarreras.Carreras_Realizadas;
+import GUI.SubPantallaCarreras.*;
 import GUI.SubPantallaCorredores.Corredores;
 import GUI.IMG.Imajen_Fondo;
 import Logica.*;
@@ -184,6 +183,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         Carreras_Realizadas carrera_r = new Carreras_Realizadas(this, true);
         carrera_r.setVisible(true);
     }//GEN-LAST:event_jButton_Carreras_RealizadasActionPerformed
+    
+    /* En este metodo creamos la interfac para gestionar los participantes de las carreras */
+    
+    public void Añadir_Corredor(){
+        Añadir_Corredores añadir = new Añadir_Corredores(this, true);
+        añadir.setVisible(true);
+    }
     
     /* @param args the command line arguments */
     public static void main(String args[]) {
