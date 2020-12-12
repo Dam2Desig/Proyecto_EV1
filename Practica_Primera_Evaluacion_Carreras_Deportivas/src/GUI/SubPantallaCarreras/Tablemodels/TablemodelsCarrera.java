@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class Tablemodels extends AbstractTableModel{
+public class TablemodelsCarrera extends AbstractTableModel{
     
     // Atrivutos del objeto
     private List <Carrera> Lista_Carrera;
@@ -15,7 +15,7 @@ public class Tablemodels extends AbstractTableModel{
 
     /* Contructor del objeto */
     
-    public Tablemodels(List<Carrera> Lista_Menus) {
+    public TablemodelsCarrera(List<Carrera> Lista_Menus) {
         this.Lista_Carrera = Lista_Menus;
     } 
 

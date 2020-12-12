@@ -101,11 +101,11 @@ public class Carrera implements Serializable{
     
     /* Borrar Participante a la carrera */
     
-    public void Borrar_Participante(Lista_Corredores L){
+    public void Borrar_Participante(String DNI){
         Iterator <Lista_Corredores> Lista = Lista_Corredores.iterator();
         boolean Salir = false;
         while(Lista.hasNext() && Salir != true){
-            if(Lista.next().getCorredor().getNombre().equals(L.getCorredor().getNombre())){
+            if(Lista.next().getCorredor().getDNI().equals(DNI)){
                 Lista.remove();
                 Salir = true;
             }

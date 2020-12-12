@@ -2,12 +2,13 @@
 package Logica;
 
 import DTO.Carrera;
+import java.io.Serializable;
 import java.util.*;
 
 public class Lista_Carreras {
     
     // Atrivutos del objeto
-    private List <Carrera> Lista_Carrera = new ArrayList<>();
+    private static List <Carrera> Lista_Carrera = new ArrayList<>();
 
     /* Este metodo añade una carrera a Lista carreras */
     
@@ -82,6 +83,7 @@ public class Lista_Carreras {
         Carrera c = null;
         while(Lista.hasNext() && Salir != true){
             c = Lista.next();
+            System.out.println("hola");
             if(c.getNombre().equals(nombre) && c.getFecha().equals(fecha)){
                 Salir = true;
             }
@@ -90,9 +92,9 @@ public class Lista_Carreras {
     }
 
     /* Metodo get del objeto para persistencia de datos */
-    
+
     public List<Carrera> getLista_Carrera() {
         return Lista_Carrera;
     }
-        
+
 }

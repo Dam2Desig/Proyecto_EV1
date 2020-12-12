@@ -133,7 +133,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTableCarrerasMouseClicked
 
     public void Actualizar_Tabla_Carreras(){
-        jTableCarreras.setModel(new Tablemodels(lista_carreras.Lista_Carreras_Realizadas()));
+        jTableCarreras.setModel(new TablemodelsCarrera(lista_carreras.Lista_Carreras_Realizadas()));
     }
     
     public void Actualizar_Tabla_Resultados(){

@@ -3,6 +3,7 @@ package Logica;
 
 import java.util.*;
 import DTO.Corredor;
+import java.io.Serializable;
 
 /* Esta clase guardara todos los participantes de programa */
 
@@ -55,6 +56,21 @@ public class Lista_Corredores {
     
     public void Ordenar_Corredores(){
         Collections.sort(Lista_Participantes);
+    }
+    
+    /* Este metodo busca la selecion para añadir a un corredor a la carrera */
+    
+    public Corredor Buscar_Resultados(String DNI){
+        Iterator <Corredor> Lista = Lista_Participantes.iterator();
+        boolean Salir = false;
+        Corredor c = null;
+        while(Lista.hasNext() && Salir != true){
+            c = Lista.next();
+            if(c.getDNI().equals(DNI)){
+                Salir = true;
+            }
+        }
+        return c;
     }
     
     /* Metodo get del objeto */

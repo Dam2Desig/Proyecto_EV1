@@ -3,7 +3,7 @@ package GUI.SubPantallaCarreras;
 
 import Logica.*;
 import DTO.*;
-import GUI.SubPantallaCarreras.Tablemodels.Tablemodels;
+import GUI.SubPantallaCarreras.Tablemodels.TablemodelsCarrera;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -236,7 +236,9 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     private void jButtonGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionActionPerformed
-        pantalla_principal.Añadir_Corredor();
+        Carrera c_Temporal = Recoger_Datos();
+        Carrera c = lista_carreras.Buscar_Resultados(c_Temporal.getNombre(), c_Temporal.getFecha());
+        pantalla_principal.Añadir_Corredor(c);
     }//GEN-LAST:event_jButtonGestionActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -314,7 +316,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     }
     
     private void Actualizar_Tabla (){
-        jTableCarreras.setModel(new Tablemodels(lista_carreras.Lista_sin_correr()));
+        jTableCarreras.setModel(new TablemodelsCarrera(lista_carreras.Lista_sin_correr()));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

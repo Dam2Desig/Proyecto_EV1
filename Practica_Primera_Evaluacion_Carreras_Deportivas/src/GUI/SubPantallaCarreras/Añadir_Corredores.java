@@ -1,19 +1,28 @@
 
 package GUI.SubPantallaCarreras;
 
+import DTO.*;
+import GUI.SubPantallaCarreras.Tablemodels.Tablemodels_Resultados;
 import GUI.SubPantallaCorredores.Tablemodels.Tablemodels;
 import Logica.Lista_Corredores;
+import javax.swing.JOptionPane;
 
 public class Añadir_Corredores extends javax.swing.JDialog {
 
     /* Creamos un binculo a la lista de corredores */
     private Lista_Corredores lista_Corredores = new Lista_Corredores();
+    /* Optenemos la carrera a gestionar */
+    private Carrera carrera;
+    /* Objeto para gestionar el añadir o el quitar */
+    private Corredor c;
     
     /* Creates new form Añador_Corredores */
-    public Añadir_Corredores(java.awt.Frame parent, boolean modal) {
+    public Añadir_Corredores(java.awt.Frame parent, boolean modal, Carrera carrera) {
         super(parent, modal);
+        this.carrera = carrera;
         initComponents();
         Actualizar_Tabla_Corredores();
+        Actualizar_Tabla_Participantes();
     }
 
     /**
@@ -30,8 +39,8 @@ public class Añadir_Corredores extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonAñadir = new javax.swing.JButton();
+        jButtonBorrar = new javax.swing.JButton();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldDorsal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -39,7 +48,7 @@ public class Añadir_Corredores extends javax.swing.JDialog {
         jTableCorredores = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableCorredores_Apuntados = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,17 +65,31 @@ public class Añadir_Corredores extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Nombre del corredor:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Dorsal:");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Añadir");
+        jButtonAñadir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButtonAñadir.setText("Añadir");
+        jButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAñadirActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton4.setText("Borrar");
+        jButtonBorrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButtonBorrar.setText("Borrar");
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
+            }
+        });
+
+        jTextFieldNombre.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -85,9 +108,9 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                             .addComponent(jTextFieldDorsal)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonBorrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(jButtonAñadir)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -103,8 +126,8 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                     .addComponent(jTextFieldDorsal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButtonAñadir)
+                    .addComponent(jButtonBorrar))
                 .addContainerGap())
         );
 
@@ -122,12 +145,17 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCorredores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCorredoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableCorredores);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Corredores Apuntados:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCorredores_Apuntados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,7 +166,12 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jTableCorredores_Apuntados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCorredores_ApuntadosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableCorredores_Apuntados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,15 +209,61 @@ public class Añadir_Corredores extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredoresMouseClicked
+        /* Cojemos la fila donde icimos click */
+        int seleccion = jTableCorredores.rowAtPoint(evt.getPoint());
+        jTextFieldNombre.setText(String.valueOf(jTableCorredores.getValueAt(seleccion, 0)));
+        String DNI = String.valueOf(jTableCorredores.getValueAt(seleccion, 1));
+        /* Guardamos el resultado de la busqueda en el atributo */
+        c = lista_Corredores.Buscar_Resultados(DNI);
+    }//GEN-LAST:event_jTableCorredoresMouseClicked
+
+    private void jTableCorredores_ApuntadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredores_ApuntadosMouseClicked
+        /* Cojemos la fila donde icimos click */
+        int seleccion = jTableCorredores_Apuntados.rowAtPoint(evt.getPoint());
+        /* Guardamos el resultado de la busqueda en el atributo */
+        jTextFieldNombre.setText(String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 0)));
+        String DNI = String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 1));
+        jTextFieldDorsal.setText(String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 2)));
+        /* Guardamos el resultado de la busqueda en el atributo */
+        c = lista_Corredores.Buscar_Resultados(DNI);
+    }//GEN-LAST:event_jTableCorredores_ApuntadosMouseClicked
+
+    private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
+        if(c != null){
+            int dorsal = Integer.parseInt(jTextFieldDorsal.getText());
+            carrera.Añadir_Participante(new DTO.Lista_Corredores(c, dorsal));
+            Actualizar_Tabla_Participantes();
+            Actualizar_Campos();
+        } else{
+            JOptionPane.showMessageDialog(this, "Seleciona un corredor", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonAñadirActionPerformed
+
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        if(c != null){
+            carrera.Borrar_Participante(c.getDNI());
+            Actualizar_Tabla_Participantes();
+            Actualizar_Campos();
+        }
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
+
     public void Actualizar_Tabla_Corredores(){
         jTableCorredores.setModel(new Tablemodels(lista_Corredores.getLista_Participantes()));
     }
     
+    public void Actualizar_Tabla_Participantes(){
+        jTableCorredores_Apuntados.setModel(new Tablemodels_Resultados(carrera.getLista_Corredores()));
+    }
     
+    public void Actualizar_Campos(){
+        jTextFieldNombre.setText("");
+        jTextFieldDorsal.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAñadir;
+    private javax.swing.JButton jButtonBorrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -194,8 +273,8 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableCorredores;
+    private javax.swing.JTable jTableCorredores_Apuntados;
     private javax.swing.JTextField jTextFieldDorsal;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
