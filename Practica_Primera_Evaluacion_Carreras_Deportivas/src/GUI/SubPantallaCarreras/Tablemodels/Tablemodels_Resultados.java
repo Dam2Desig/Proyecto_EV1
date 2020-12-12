@@ -1,27 +1,31 @@
 
 package GUI.SubPantallaCarreras.Tablemodels;
 
-import DTO.Carrera;
+import DTO.Lista_Corredores;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class Tablemodels_Resultados extends AbstractTableModel{
  
     // Atrivutos del objeto
-    private Carrera C;
+    private List <Lista_Corredores> lista;
     private String[] Nombre_Columnas = {"Nombre", "DNI", "Dolsar", "Posicion"};
 
-    /* Contructor del objeto */
+    /* Contructores del objeto */
     
-    public Tablemodels_Resultados(Carrera c) {
-        this.C = c;
+    public Tablemodels_Resultados(List <Lista_Corredores> lista) {
+        this.lista = lista;
+    }
+    
+    public Tablemodels_Resultados() {
+        
     } 
 
     /* Este metodo nos debuelve el numero de filas */
     
     @Override
     public int getRowCount() {
-        return C.getLista_Corredores().size();
+        return lista.size();
     }
 
     /* Este metodo nos debuelve el numero de columnas */
@@ -37,10 +41,13 @@ public class Tablemodels_Resultados extends AbstractTableModel{
     public Object getValueAt(int rewIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                //return ;
+                return lista.get(rewIndex).getCorredor().getNombre();
             case 1:
-                
-                //return ;
+                return lista.get(rewIndex).getCorredor().getDNI();
+            case 2:
+                return lista.get(rewIndex).getDorsal();
+            case 3:
+                return lista.get(rewIndex).getTiempo();
         }
         return null;
     }

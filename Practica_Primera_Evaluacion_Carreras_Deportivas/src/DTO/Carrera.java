@@ -30,6 +30,11 @@ public class Carrera implements Serializable{
         Realizada = false;
         Lista_Corredores = new ArrayList<Lista_Corredores>(); 
     }
+    
+    public Carrera() {
+        Realizada = false;
+        Lista_Corredores = new ArrayList<Lista_Corredores>();  
+    }
 
     /* Metodos set de objeto */
 

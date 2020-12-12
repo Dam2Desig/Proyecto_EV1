@@ -13,13 +13,14 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     /* Creamos un binculo a la lista de carreras */
     private Lista_Carreras lista_carreras = new Lista_Carreras();
     /* Esto es para pasar los resultados de la carrera */
-    private Carrera c;
+    private Carrera c = new Carrera();
     
     /* Creates new form Carreras_Realizadas */
     public Carreras_Realizadas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         Actualizar_Tabla_Carreras();
+        Actualizar_Tabla_Resultados();
     }
 
     /**
@@ -36,7 +37,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         jTableCarreras = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableResultados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,7 +65,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Resultados:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +76,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTableResultados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +128,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         if(fecha != null){
             c = lista_carreras.Buscar_Resultados(nombre, fecha);
         }
+        Actualizar_Tabla_Resultados();
     }//GEN-LAST:event_jTableCarrerasMouseClicked
 
     public void Actualizar_Tabla_Carreras(){
@@ -134,7 +136,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     }
     
     public void Actualizar_Tabla_Resultados(){
-        
+        jTableResultados.setModel(new Tablemodels_Resultados(c.getLista_Corredores()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,7 +144,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableCarreras;
+    private javax.swing.JTable jTableResultados;
     // End of variables declaration//GEN-END:variables
 }

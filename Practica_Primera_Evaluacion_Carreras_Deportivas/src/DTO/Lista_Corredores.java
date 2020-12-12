@@ -1,6 +1,8 @@
 
 package DTO;
 
+import java.util.Date;
+
 /* Esta clase sirve para asociar un corredor con su dorsal asociado en una carrera */
 
 public class Lista_Corredores {
@@ -8,11 +10,11 @@ public class Lista_Corredores {
     // Atrivutos del objeto
     private Corredor corredor;
     private int dorsal;
-    private double tiempo;
+    private Date tiempo;
 
     /* Contructor del objeto */
     
-    public Lista_Corredores(Corredor corredor, int dorsal, double tiempo) {
+    public Lista_Corredores(Corredor corredor, int dorsal, Date tiempo) {
         this.corredor = corredor;
         this.dorsal = dorsal;
         this.tiempo = tiempo;
@@ -27,6 +29,10 @@ public class Lista_Corredores {
     public void setDorsal(int dorsal) {
         this.dorsal = dorsal;
     }
+
+    public void setTiempo(Date tiempo) {
+        this.tiempo = tiempo;
+    }
     
     /* Metodos get de objeto */
 
@@ -37,7 +43,11 @@ public class Lista_Corredores {
     public int getDorsal() {
         return dorsal;
     }
-    
+
+    public Date getTiempo() {
+        return tiempo;
+    }
+
     /* Metodo toString */
 
     @Override
