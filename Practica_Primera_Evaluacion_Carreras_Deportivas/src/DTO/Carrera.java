@@ -112,4 +112,10 @@ public class Carrera implements Serializable{
         }
     }
     
+    /* Este metodo sirve para ordenar los resultados de la carera */
+    
+    public void Ordenar_Resultados(){
+        Collections.sort(Lista_Corredores);
+    }
+    
 }

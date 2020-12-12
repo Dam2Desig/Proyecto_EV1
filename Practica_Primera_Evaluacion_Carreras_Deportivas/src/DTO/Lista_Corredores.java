@@ -5,7 +5,7 @@ import java.util.Date;
 
 /* Esta clase sirve para asociar un corredor con su dorsal asociado en una carrera */
 
-public class Lista_Corredores {
+public class Lista_Corredores implements Comparable<Lista_Corredores>{
     
     // Atrivutos del objeto
     private Corredor corredor;
@@ -53,6 +53,11 @@ public class Lista_Corredores {
     @Override
     public String toString() {
         return "Lista_Corredores{" + "corredor=" + corredor + ", Dorsal=" + dorsal + '}';
+    }
+
+    @Override
+    public int compareTo(Lista_Corredores t) {
+        return tiempo.compareTo(t.getTiempo());
     }
        
 }

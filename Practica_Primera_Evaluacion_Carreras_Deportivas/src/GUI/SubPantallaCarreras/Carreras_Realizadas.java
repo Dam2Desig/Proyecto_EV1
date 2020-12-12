@@ -127,6 +127,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         }
         if(fecha != null){
             c = lista_carreras.Buscar_Resultados(nombre, fecha);
+            c.Ordenar_Resultados();
         }
         Actualizar_Tabla_Resultados();
     }//GEN-LAST:event_jTableCarrerasMouseClicked
