@@ -99,6 +99,20 @@ public class Carrera implements Serializable{
         }
     }
     
+    /* Este metodo edita el array List */
+    
+    public void Editar_Corredor(String DNI, Date Resultado){
+        Iterator <Lista_Corredores> Lista = Lista_Corredores.iterator();
+        boolean Salir = false;
+        while(Lista.hasNext() && Salir != true){
+            Lista_Corredores editar = Lista.next();
+            if(editar.getCorredor().getDNI().equals(DNI)){
+                editar.setTiempo(Resultado);
+                Salir = true;
+            }
+        }
+    }
+    
     /* Borrar Participante a la carrera */
     
     public void Borrar_Participante(String DNI){
