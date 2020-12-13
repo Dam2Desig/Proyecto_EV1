@@ -6,6 +6,7 @@ import Logica.Lista_Carreras;
 import GUI.SubPantallaCarreras.Tablemodels.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.util.Date;
 
 public class Carreras_Realizadas extends javax.swing.JDialog {
@@ -13,7 +14,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     /* Creamos un binculo a la lista de carreras */
     private Lista_Carreras lista_carreras = new Lista_Carreras();
     /* Esto es para pasar los resultados de la carrera */
-    private Carrera c = new Carrera();
+    private Carrera c = null;
     
     /* Creates new form Carreras_Realizadas */
     public Carreras_Realizadas(java.awt.Frame parent, boolean modal) {
@@ -38,10 +39,14 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableResultados = new javax.swing.JTable();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Carreras:");
 
         jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
@@ -62,7 +67,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTableCarreras);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Resultados:");
 
         jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
@@ -78,6 +83,18 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTableResultados);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Fecha:");
+
+        jButton1.setText("Ver resultados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,20 +102,34 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(159, 159, 159)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -115,25 +146,24 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         /* Cojemos la fila donde icimos click */
         int seleccion = jTableCarreras.rowAtPoint(evt.getPoint());
         /* Cojemos los valores de esa fila y los recolocamos en los JTextField o jSpinner*/
-        String nombre = String.valueOf(jTableCarreras.getValueAt(seleccion, 0));
+        jTextFieldNombre.setText(String.valueOf(jTableCarreras.getValueAt(seleccion, 0)));
         /* Convertimos la fecha optenida de String a date y se la pasamos al jSpinner */
-        Date fecha = null;
         try{
             String Fecha = String.valueOf(jTableCarreras.getValueAt(seleccion, 1));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            fecha = sdf.parse(Fecha);
+            jSpinner1.setValue(sdf.parse(Fecha));
         } catch (ParseException e){
             System.out.println(e.getMessage());
         }
-        // comprovamos que la fecha no sea null
-        if(fecha != null){
-            // buscamos la carrera en el array list
-            c = lista_carreras.Buscar_Resultados(nombre, fecha);
-            // Actualizamos la tabla
-            c.Ordenar_Resultados();
-        }
-        Actualizar_Tabla_Resultados();
+
     }//GEN-LAST:event_jTableCarrerasMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombre = jTextFieldNombre.getText();
+        Date fecha = (Date) jSpinner1.getValue();
+        c = lista_carreras.Buscar_Resultados(nombre, fecha);
+        Actualizar_Tabla_Resultados();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /* Estos metodos sirven para actualizar las tablas */
     
@@ -142,15 +172,23 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
     }
     
     public void Actualizar_Tabla_Resultados(){
-        jTableResultados.setModel(new Tablemodels_Resultados(c.getLista_Corredores()));
+        if(c != null){
+            jTableResultados.setModel(new Tablemodels_Resultados(c.getLista_Corredores()));
+        } else{
+            jTableResultados.setModel(new Tablemodels_Resultados());
+        }        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTableCarreras;
     private javax.swing.JTable jTableResultados;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

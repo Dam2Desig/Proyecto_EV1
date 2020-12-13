@@ -51,6 +51,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
         jButtonGestion = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
+        jButtonIntroducir_Resultados = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCarreras = new javax.swing.JTable();
 
@@ -154,6 +155,13 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
             }
         });
 
+        jButtonIntroducir_Resultados.setText("Introducir resultados");
+        jButtonIntroducir_Resultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIntroducir_ResultadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -164,20 +172,23 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
                     .addComponent(jButtonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonIntroducir_Resultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAñadir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonGestion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonIntroducir_Resultados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonBorrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,7 +232,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -318,6 +329,14 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
         MouseClicked = Recoger_Datos();
     }//GEN-LAST:event_jTableCarrerasMouseClicked
 
+    private void jButtonIntroducir_ResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIntroducir_ResultadosActionPerformed
+        Carrera c_Temporal = Recoger_Datos();
+        Carrera c = lista_carreras.Buscar_Resultados(c_Temporal.getNombre(), c_Temporal.getFecha());
+        pantalla_principal.Introducir_Resultados(c);
+        Actualizar_Campos();
+        Actualizar_Tabla();
+    }//GEN-LAST:event_jButtonIntroducir_ResultadosActionPerformed
+
     public Carrera Recoger_Datos (){
         String nombre = jTextFieldNombre.getText();
         Date fecha = (Date) jSpinner1.getValue();
@@ -350,6 +369,7 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGestion;
+    private javax.swing.JButton jButtonIntroducir_Resultados;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -83,8 +83,7 @@ public class Lista_Carreras {
         Carrera c = null;
         while(Lista.hasNext() && Salir != true){
             c = Lista.next();
-            System.out.println("hola");
-            if(c.getNombre().equals(nombre) && c.getFecha().equals(fecha)){
+            if(c.getNombre().equals(nombre) || c.getFecha().equals(fecha)){
                 Salir = true;
             }
         }

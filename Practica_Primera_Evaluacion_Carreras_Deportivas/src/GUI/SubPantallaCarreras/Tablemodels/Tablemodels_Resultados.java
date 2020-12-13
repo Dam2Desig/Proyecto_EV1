@@ -2,6 +2,7 @@
 package GUI.SubPantallaCarreras.Tablemodels;
 
 import DTO.Lista_Corredores;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -18,7 +19,7 @@ public class Tablemodels_Resultados extends AbstractTableModel{
     }
     
     public Tablemodels_Resultados() {
-        
+        lista = new ArrayList<>();
     } 
 
     /* Este metodo nos debuelve el numero de filas */

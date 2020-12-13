@@ -122,7 +122,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                        .addGap(18, 309, Short.MAX_VALUE)
                         .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel_Nombre_App, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
                 .addContainerGap())
@@ -197,6 +197,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     public void Gestion_Corredores(){
         Corredores corredores = new Corredores(this, true);
         corredores.setVisible(true);
+    }
+    
+    /* Metodo para gestionar los resultados de la carrera */
+    
+    public void Introducir_Resultados(Carrera c){
+        Introducir_Resultados_Carerras irc = new Introducir_Resultados_Carerras(this, true, c);
+        irc.setVisible(true);
     }
     
     /* @param args the command line arguments */
