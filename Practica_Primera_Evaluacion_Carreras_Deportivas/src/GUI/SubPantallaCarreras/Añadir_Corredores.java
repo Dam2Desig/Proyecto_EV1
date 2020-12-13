@@ -2,15 +2,21 @@
 package GUI.SubPantallaCarreras;
 
 import DTO.*;
+import GUI.Pantalla_Principal;
 import GUI.SubPantallaCarreras.Tablemodels.Tablemodels_Resultados;
 import GUI.SubPantallaCorredores.Tablemodels.Tablemodels;
 import Logica.Lista_Corredores;
+import Logica.Validar;
 import javax.swing.JOptionPane;
 
 public class Añadir_Corredores extends javax.swing.JDialog {
 
+    /* Creamos un vinculo a la pantalla principal */
+    private Pantalla_Principal pantalla_principal;
     /* Creamos un binculo a la lista de corredores */
     private Lista_Corredores lista_Corredores = new Lista_Corredores();
+    /* Esto crea un vinculo a la clase de validar */
+    private Validar validar = new Validar();
     /* Optenemos la carrera a gestionar */
     private Carrera carrera;
     /* Objeto para gestionar el añadir o el quitar */
@@ -19,8 +25,12 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     /* Creates new form Añador_Corredores */
     public Añadir_Corredores(java.awt.Frame parent, boolean modal, Carrera carrera) {
         super(parent, modal);
+        // Recivimos la carrera a gestionar
         this.carrera = carrera;
+        // Cremos el vinculo a la pantalla principal
+        pantalla_principal = (Pantalla_Principal) parent;
         initComponents();
+        // Damos formato a las tablas
         Actualizar_Tabla_Corredores();
         Actualizar_Tabla_Participantes();
     }
@@ -40,9 +50,10 @@ public class Añadir_Corredores extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButtonAñadir = new javax.swing.JButton();
-        jButtonBorrar = new javax.swing.JButton();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldDorsal = new javax.swing.JTextField();
+        jButtonBorrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
@@ -81,6 +92,8 @@ public class Añadir_Corredores extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldNombre.setEditable(false);
+
         jButtonBorrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonBorrar.setText("Borrar");
         jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +102,13 @@ public class Añadir_Corredores extends javax.swing.JDialog {
             }
         });
 
-        jTextFieldNombre.setEditable(false);
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setText("Gestion corredores");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,13 +123,15 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNombre)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                             .addComponent(jTextFieldDorsal)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonBorrar)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAñadir)))
+                        .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -124,11 +145,13 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldDorsal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAñadir)
-                    .addComponent(jButtonBorrar))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonAñadir)
+                        .addComponent(jButtonBorrar)))
+                .addGap(6, 6, 6))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -182,12 +205,12 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                     .addComponent(jScrollPane3)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,7 +226,7 @@ public class Añadir_Corredores extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +235,7 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     private void jTableCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredoresMouseClicked
         /* Cojemos la fila donde icimos click */
         int seleccion = jTableCorredores.rowAtPoint(evt.getPoint());
+        // Recojemos los datos
         jTextFieldNombre.setText(String.valueOf(jTableCorredores.getValueAt(seleccion, 0)));
         String DNI = String.valueOf(jTableCorredores.getValueAt(seleccion, 1));
         /* Guardamos el resultado de la busqueda en el atributo */
@@ -221,7 +245,7 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     private void jTableCorredores_ApuntadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCorredores_ApuntadosMouseClicked
         /* Cojemos la fila donde icimos click */
         int seleccion = jTableCorredores_Apuntados.rowAtPoint(evt.getPoint());
-        /* Guardamos el resultado de la busqueda en el atributo */
+        // Recojemos los datos
         jTextFieldNombre.setText(String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 0)));
         String DNI = String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 1));
         jTextFieldDorsal.setText(String.valueOf(jTableCorredores_Apuntados.getValueAt(seleccion, 2)));
@@ -230,23 +254,44 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     }//GEN-LAST:event_jTableCorredores_ApuntadosMouseClicked
 
     private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
+        // Comprovamos que se seleciono un corredor
         if(c != null){
-            int dorsal = Integer.parseInt(jTextFieldDorsal.getText());
-            carrera.Añadir_Participante(new DTO.Lista_Corredores(c, dorsal));
-            Actualizar_Tabla_Participantes();
-            Actualizar_Campos();
+            // Recojemos el numero del dorsal
+            int dorsal = 0;
+            try{
+                dorsal = Integer.parseInt(jTextFieldDorsal.getText());
+            } catch(Exception e){
+                
+            }
+            if(validar.V_Dorsal(dorsal)){
+                // Agregamos al participante
+                carrera.Añadir_Participante(new DTO.Lista_Corredores(c, dorsal));
+                // Actualizamos los campos
+                Actualizar_Tabla_Participantes();
+                Actualizar_Campos();
+            }else{
+                JOptionPane.showMessageDialog(this, "El numero del dorsal no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else{
             JOptionPane.showMessageDialog(this, "Seleciona un corredor", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        // comprovamos que se selecionados para borrar
         if(c != null){
+            // llamamos al metodo de borrar y le pasamos el dni
             carrera.Borrar_Participante(c.getDNI());
+            // Actualizamos los campos
             Actualizar_Tabla_Participantes();
             Actualizar_Campos();
         }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Llamamos al metode de la pantalla principal para abrir la pantalla de gestion de corredores
+        pantalla_principal.Gestion_Corredores();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void Actualizar_Tabla_Corredores(){
         jTableCorredores.setModel(new Tablemodels(lista_Corredores.getLista_Participantes()));
@@ -262,6 +307,7 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JLabel jLabel1;

@@ -147,8 +147,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     /* Este metodo nos abrira la pantalla de Gestion de Corredores */
     
     private void jButtonGestion_CorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestion_CorredoresActionPerformed
-        Corredores corredores = new Corredores(this, true);
-        corredores.setVisible(true);
+        // Llamamos a gestionar corredores
+        Gestion_Corredores();
     }//GEN-LAST:event_jButtonGestion_CorredoresActionPerformed
 
     /* Estos metodos sirven para cerrar el programa pero antes guardan los datos en los ficheros correspondientes */
@@ -190,6 +190,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     public void Añadir_Corredor(Carrera c){
         Añadir_Corredores añadir = new Añadir_Corredores(this, true, c);
         añadir.setVisible(true);
+    }
+    
+    /* Creamos un metodo para que desde distintas partes del programa puedan gestionarse los corredores */
+    
+    public void Gestion_Corredores(){
+        Corredores corredores = new Corredores(this, true);
+        corredores.setVisible(true);
     }
     
     /* @param args the command line arguments */

@@ -4,11 +4,9 @@ package GUI.SubPantallaCarreras;
 import Logica.*;
 import DTO.*;
 import GUI.SubPantallaCarreras.Tablemodels.TablemodelsCarrera;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
-import javax.swing.JDialog;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
 import GUI.Pantalla_Principal;
 
 public class Carreras_sin_Realizar extends javax.swing.JDialog {
@@ -19,6 +17,8 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     private Lista_Carreras lista_carreras = new Lista_Carreras();
     /* Este atributo se usa para recojer los datos de los corredores a borrar o a modificar */
     private Carrera MouseClicked;
+    /* Esto crea un vinculo a la clase de validar */
+    private Validar validar = new Validar();
     
     /* Creates new form Carreras */
     public Carreras_sin_Realizar(java.awt.Frame parent, boolean modal) {
@@ -229,10 +229,23 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
+        // Recogemos los datos que ya estaran validaddos por el metodo de Recoger_Datos()
         Carrera c = Recoger_Datos();
-        lista_carreras.Añadir_Carrera(c);
-        Actualizar_Tabla();
-        Actualizar_Campos();
+        // Comprobamos que el corredor no sea null
+        if(c != null){
+            // Añadimos la carrera a la lista
+            lista_carreras.Añadir_Carrera(c);
+            // Preguntamos al usuario si desea añadir participantes a la carrrera que acaba de crear
+            String Yes_No = "¿Deseas añadir participantes a la carrera?";
+            int resultado = JOptionPane.showConfirmDialog(this, Yes_No, "Confirmar", JOptionPane.YES_NO_OPTION);
+            if(resultado == JOptionPane.YES_OPTION){
+                pantalla_principal.Añadir_Corredor(c);
+            }
+            Actualizar_Tabla();
+            Actualizar_Campos();
+        } else{
+            JOptionPane.showMessageDialog(this, "Los datos introducidos no son validos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     private void jButtonGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionActionPerformed
@@ -247,13 +260,17 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
         String Yes_No = "Confirma para modificar la carrera " + MouseClicked.getNombre();
         int resultado = JOptionPane.showConfirmDialog(this, Yes_No, "Confirmar", JOptionPane.YES_NO_OPTION);
         if(resultado == JOptionPane.YES_OPTION){
-            // Cojemos los datos llamandoa al metodo Recojer_Datos y se lo pasamos al metodo de modificar
             Carrera c_Nuevo = Recoger_Datos();
-            lista_carreras.Actualizar_Carrera(MouseClicked, c_Nuevo);
-            // Actualizamos la tabla
-            Actualizar_Tabla();
-            // Informamos de estado
-            JOptionPane.showMessageDialog(this, "La carrera fue actualizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            // Comprovamos que no sea null
+            if(c_Nuevo != null){
+                lista_carreras.Actualizar_Carrera(MouseClicked, c_Nuevo);
+                // Actualizamos la tabla
+                Actualizar_Tabla();
+                // Informamos de estado
+                JOptionPane.showMessageDialog(this, "La carrera fue actualizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else{
+                JOptionPane.showMessageDialog(this, "Los datos introducidos no son validos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else{
             JOptionPane.showMessageDialog(this, "La carrera no fue actualizada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -305,8 +322,17 @@ public class Carreras_sin_Realizar extends javax.swing.JDialog {
         String nombre = jTextFieldNombre.getText();
         Date fecha = (Date) jSpinner1.getValue();
         String direcion = jTextFieldDirecion.getText();
-        int N_Participantes = Integer.parseInt(jTextFieldN_Participantes.getText());
-        return new Carrera(nombre, fecha, direcion, N_Participantes);
+        int N_Participantes = 0;
+        try{
+            N_Participantes = Integer.parseInt(jTextFieldN_Participantes.getText());
+        } catch (Exception e){
+            
+        }
+        if(validar.V_Nombre(nombre) && validar.V_Fecha(fecha) && validar.V_Direcion(direcion) && validar.V_Participantes(N_Participantes) ){
+            return new Carrera(nombre, fecha, direcion, N_Participantes);
+        } else{
+           return null;
+        }
     }
     
     public void Actualizar_Campos(){

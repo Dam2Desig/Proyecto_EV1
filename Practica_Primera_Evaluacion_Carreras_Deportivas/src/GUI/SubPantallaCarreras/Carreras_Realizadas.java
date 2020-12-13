@@ -125,13 +125,18 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         } catch (ParseException e){
             System.out.println(e.getMessage());
         }
+        // comprovamos que la fecha no sea null
         if(fecha != null){
+            // buscamos la carrera en el array list
             c = lista_carreras.Buscar_Resultados(nombre, fecha);
+            // Actualizamos la tabla
             c.Ordenar_Resultados();
         }
         Actualizar_Tabla_Resultados();
     }//GEN-LAST:event_jTableCarrerasMouseClicked
 
+    /* Estos metodos sirven para actualizar las tablas */
+    
     public void Actualizar_Tabla_Carreras(){
         jTableCarreras.setModel(new TablemodelsCarrera(lista_carreras.Lista_Carreras_Realizadas()));
     }
