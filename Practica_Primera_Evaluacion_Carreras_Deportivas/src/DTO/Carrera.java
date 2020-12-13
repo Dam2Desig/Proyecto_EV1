@@ -83,13 +83,6 @@ public class Carrera implements Serializable{
     public List<Lista_Corredores> getLista_Corredores() {
         return Lista_Corredores;
     }
-    
-    /* Metodo toString */
-
-    @Override
-    public String toString() {
-        return "Carrera{" + "Nombre=" + Nombre + ", Fecha=" + Fecha + ", Direcion=" + Direcion + ", N_Participantes=" + N_Participantes + ", Lista_Corredores=" + Lista_Corredores + '}';
-    }
         
     /* Añadir Participante a la carrera */
     
@@ -101,13 +94,13 @@ public class Carrera implements Serializable{
     
     /* Este metodo edita el array List */
     
-    public void Editar_Corredor(String DNI, Date Resultado){
+    public void Editar_Corredor(String DNI, int tiempo){
         Iterator <Lista_Corredores> Lista = Lista_Corredores.iterator();
         boolean Salir = false;
         while(Lista.hasNext() && Salir != true){
             Lista_Corredores editar = Lista.next();
             if(editar.getCorredor().getDNI().equals(DNI)){
-                editar.setTiempo(Resultado);
+                editar.setTiempo(tiempo);
                 Salir = true;
             }
         }

@@ -291,6 +291,8 @@ public class Añadir_Corredores extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Llamamos al metode de la pantalla principal para abrir la pantalla de gestion de corredores
         pantalla_principal.Gestion_Corredores();
+        // Actualizamos la tabla
+        Actualizar_Tabla_Corredores();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void Actualizar_Tabla_Corredores(){

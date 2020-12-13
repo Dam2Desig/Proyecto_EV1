@@ -9,6 +9,7 @@ public class Introducir_Resultados_Carerras extends javax.swing.JDialog {
 
     // Esta es la carrera a poner los resultados
     private Carrera c;
+    private int Posicion = 0;
     
     /* Creates new form Introducir_Resultados_Carerras */
     public Introducir_Resultados_Carerras(java.awt.Frame parent, boolean modal, Carrera c) {
@@ -216,9 +217,10 @@ public class Introducir_Resultados_Carerras extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String dni = jTextFieldDNI.getText();
         if(!dni.equals("")){
-            Date Resultado;
-            //c.Editar_Corredor(dni, Resultado);
+            Posicion++;
+            c.Editar_Corredor(dni, Posicion);
         }
+        Actualizar_Tabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Este evento pone a la carrera como terminada

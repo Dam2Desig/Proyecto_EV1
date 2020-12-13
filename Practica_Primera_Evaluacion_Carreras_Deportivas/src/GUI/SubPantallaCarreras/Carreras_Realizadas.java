@@ -162,6 +162,7 @@ public class Carreras_Realizadas extends javax.swing.JDialog {
         String nombre = jTextFieldNombre.getText();
         Date fecha = (Date) jSpinner1.getValue();
         c = lista_carreras.Buscar_Resultados(nombre, fecha);
+        c.Ordenar_Resultados();
         Actualizar_Tabla_Resultados();
     }//GEN-LAST:event_jButton1ActionPerformed
 

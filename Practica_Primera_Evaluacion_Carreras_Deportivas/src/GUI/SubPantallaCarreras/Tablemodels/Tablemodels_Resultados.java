@@ -48,7 +48,7 @@ public class Tablemodels_Resultados extends AbstractTableModel{
             case 2:
                 return lista.get(rewIndex).getDorsal();
             case 3:
-                return lista.get(rewIndex).getTiempo();
+                return String.valueOf(lista.get(rewIndex).getTiempo());
         }
         return null;
     }

@@ -2,7 +2,6 @@
 package DTO;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /* Esta clase sirve para asociar un corredor con su dorsal asociado en una carrera */
 
@@ -13,7 +12,7 @@ public class Lista_Corredores implements Comparable<Lista_Corredores>, Serializa
     // Atrivutos del objeto
     private Corredor corredor;
     private int dorsal;
-    private Date tiempo;
+    private int tiempo;
 
     /* Contructor del objeto */
     
@@ -32,7 +31,7 @@ public class Lista_Corredores implements Comparable<Lista_Corredores>, Serializa
         this.dorsal = dorsal;
     }
 
-    public void setTiempo(Date tiempo) {
+    public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
     
@@ -46,7 +45,7 @@ public class Lista_Corredores implements Comparable<Lista_Corredores>, Serializa
         return dorsal;
     }
 
-    public Date getTiempo() {
+    public int getTiempo() {
         return tiempo;
     }
 
@@ -57,9 +56,11 @@ public class Lista_Corredores implements Comparable<Lista_Corredores>, Serializa
         return "Lista_Corredores{" + "corredor=" + corredor + ", Dorsal=" + dorsal + '}';
     }
 
+
     @Override
     public int compareTo(Lista_Corredores t) {
-        return tiempo.compareTo(t.getTiempo());
+        String n1 = String.valueOf(tiempo);
+        String n2 = String.valueOf(t.getTiempo());
+        return n1.compareTo(n2);
     }
-       
 }
