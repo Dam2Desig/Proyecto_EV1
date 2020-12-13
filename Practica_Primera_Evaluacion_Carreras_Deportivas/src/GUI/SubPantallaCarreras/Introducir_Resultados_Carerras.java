@@ -43,6 +43,11 @@ public class Introducir_Resultados_Carerras extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +223,12 @@ public class Introducir_Resultados_Carerras extends javax.swing.JDialog {
             c.Editar_Corredor(dni, Resultado);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    // Este evento pone a la carrera como terminada
+    
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        c.setRealizada(true);
+    }//GEN-LAST:event_formWindowClosing
 
     // Actualizamosd los campos
     
